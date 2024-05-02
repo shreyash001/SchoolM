@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import { config } from '@gluestack-ui/config';
 import { Box, GluestackUIProvider, Text } from '@gluestack-ui/themed';
 import { ScrollView } from 'react-native';
@@ -7,11 +8,19 @@ import LightBulbPerson from './assets/Icons/LightbulbPerson';
 import Rocket from './assets/Icons/Rocket';
 import Logo from './assets/Icons/Logo';
 import Login from './src/Pages/Login';
+import DrawerNavigator from './src/Navigation/DrawerNavigator';
+// import DrawerNavigator from './src/Navigation/DrawerNavigator';
+import HomePage from "./src/Components/HomePage";
+import AppNavigation from './src/Navigation/AppNavigation';
+
 
 export default function App() {
   return (
     <GluestackUIProvider config={config}>
-    <Login/>
+    {/* <Login/> */}
+   {/* <DrawerNavigator/> */}
+   {/* <HomePage/> */}
+   <AppNavigation/>
     </GluestackUIProvider>
   );
 }
