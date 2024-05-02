@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import { config } from '@gluestack-ui/config';
 import { Box, GluestackUIProvider, Text } from '@gluestack-ui/themed';
 import { ScrollView } from 'react-native';
@@ -18,8 +19,8 @@ export default function App() {
     <GluestackUIProvider config={config}>
     {/* <Login/> */}
    {/* <DrawerNavigator/> */}
-   <HomePage/>
-   {/* <AppNavigation/> */}
+   {/* <HomePage/> */}
+   <AppNavigation/>
     </GluestackUIProvider>
   );
 }

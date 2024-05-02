@@ -1,8 +1,8 @@
-import { Text } from "@gluestack-ui/themed";
-import { Button, ButtonText, Center, Heading, Modal, ModalBackdrop, ModalContent, ModalHeader, VStack } from "@gluestack-ui/themed";
+import { ButtonIcon, Input, InputField, ModalBody, Text, ArrowLeftIcon, Link } from "@gluestack-ui/themed";
+import { Button, ButtonText, Center, Heading, Modal, ModalBackdrop, ModalContent, ModalHeader, VStack,ModalFooter,HStack, } from "@gluestack-ui/themed";
 import React, { useState } from "react";
 
-const ForgotPassword = () =>{
+const ForgotPassword = () => {
     const [showModal, setShowModal] = useState(false)
     const [showModal2, setShowModal2] = useState(false)
     const [showModal3, setShowModal3] = useState(false)
@@ -24,9 +24,7 @@ const ForgotPassword = () =>{
             <ModalHeader borderBottomWidth="$0">
               <VStack space="sm">
                 <Heading size="lg">Forgot password?</Heading>
-                <Text size="sm">
-                  No worries, we’ll send you reset instructions
-                </Text>
+                <Text size="sm">No worries, we’ll send you reset instructions </Text>
               </VStack>
             </ModalHeader>
             <ModalBody>
