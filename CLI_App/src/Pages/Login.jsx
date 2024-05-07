@@ -5,7 +5,7 @@ import ForgotPassword from "../Components/ForgotPassword";
 import { userLoginAction } from "../API/action";
 
 
-const Login = () => {
+const Login = ({navigation}) => {
 
     const [showPassword, setShowPassword] = useState(false)
     const [userId, setUserId] = useState("")
@@ -28,6 +28,7 @@ const Login = () => {
         }
         let response = await userLoginAction(data)
         console.log(response)
+        navigation.navigate("HomePage")
     }
 
 
