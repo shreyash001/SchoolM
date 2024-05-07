@@ -17,30 +17,13 @@ const userLogin = async (req, res) => {
                     FROM mky2020_05042024
                     WHERE IdNo = @userId AND CCode = @userCCode;
                 `);
+        console.log(result.recordset)
         if (result.recordset.length === 0) {
-            return res.status(401).json({ message: 'User Not Found' })
+            return res.status(401).json({ message: 'User Not Found', code: 'FAILED', })
         }
         else {
             let password = result.recordset[0].pwd
             if (password === userPassword) {
-                console.log("Both Password is the same")
-                bcrypt.genSalt(10, function (err, salt) {
-                    if (err) {
-                        // Handle error
-                        return res.status(500).json({ error: "Internal Server Error, Bcrypt", code: 'FAILED', });
-                    }
-
-                    // Hash the password using the generated salt
-                    bcrypt.hash(password, salt, function (err, hash) {
-                        if (err) {
-                            // Handle error
-                            return res.status(500).json({ error: "Internal Server Error, Bcrypt", code: 'FAILED', });
-                        }
-                        // console.log(hash)
-                        // Store the hash in your database
-                        // updateUserPassword({ userId, userCCode, hash })
-                    });
-                });
                 return res.status(200).json({
                     message: 'User Found, Authentication Success',
                     code: 'SUCCESS',
@@ -49,33 +32,18 @@ const userLogin = async (req, res) => {
             }
             else if (password !== userPassword) {
                 console.log("Both password are different")
-                bcrypt.compare(userPassword, password, function (err, result) {
-                    if (err) {
-                        // Handle error
-                        return res.status(500).json({ error: "Internal Server Error, Bcrypt", code: 'FAILED', });
-                    }
-
-                    if (result) {
-                        // Passwords match, authentication successful
-                        return res.status(200).json({
-                            message: 'User Found, Authentication Success',
-                            code: 'SUCCESS',
-                            data: result.recordset[0]
-                        }); // Return the queried data
-                    } else {
-                        // Passwords don't match, authentication failed
-                        return res.status(401).json({ message: 'User Found, Invalid Password', code: 'FAILED', })
-                    }
-                });
-                
+                return res.status(302).json({
+                    message: 'User Found, Authentication Failed',
+                    code: 'FAILED',
+                })
             }
         }
         // console.log(result.recordset[0]);
         // close the connection
     } catch (error) {
         console.error(error);
-        return res.status(500).json({ error: "Internal Server Error" });
-    } 
+        return res.status(500).json({ error: "Internal Server Error", code: 'FAILED', });
+    }
     // finally{
     //     sql.pool.close()
     // }

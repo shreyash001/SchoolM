@@ -1,118 +1,126 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import 'react-native-gesture-handler';
+import { config } from '@gluestack-ui/config';
+import { Box, GluestackUIProvider, Text } from '@gluestack-ui/themed';
+import { ScrollView } from 'react-native';
+import Gradient from './assets/Icons/Gradient';
+import DocumentData from './assets/Icons/DocumentData';
+import LightBulbPerson from './assets/Icons/LightbulbPerson';
+import Rocket from './assets/Icons/Rocket';
+import Logo from './assets/Icons/Logo';
+import DrawerNavigator from './src/Navigation/DrawerNavigator';
+// import DrawerNavigator from './src/Navigation/DrawerNavigator';
+import HomePage from "./src/Components/HomePage";
+import AppNavigation from './src/Navigation/AppNavigation';
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+export default function App() {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
+    <GluestackUIProvider config={config}>
+    {/* <Login/> */}
+   {/* <DrawerNavigator/> */}
+   {/* <HomePage/> */}
+   <AppNavigation/>
+    </GluestackUIProvider>
   );
 }
 
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+const Home = () => {
+  return <Container />;
+};
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
+const FeatureCard = ({ iconSvg: IconSvg, name, desc }: any) => {
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
+    <Box
+      flexDirection="column"
+      borderWidth={1}
+      borderColor="$borderDark700"
+      $web-flex={1}
+      m="$2"
+      p="$4"
+      rounded="$md"
+    >
+      <Box alignItems="center" display="flex" flexDirection="row">
+        {/* <Image source={iconSvg} alt="document" width={22} height={22} /> */}
+        <Text>
+          <IconSvg />
+        </Text>
+        <Text fontSize={22} color="$white" fontWeight="500" ml="$2">
+          {name}
+        </Text>
+      </Box>
+      <Text color="$textDark400" mt="$2">
+        {desc}
+      </Text>
+    </Box>
+  );
+};
+
+const Container = () => {
+  return (
+    <Box flex={1} backgroundColor="$black">
       <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
+        style={{ height: '100%' }}
+        contentContainerStyle={{ flexGrow: 1 }}
+      >
+        <Box
+          position="absolute"
+          $base-h={500}
+          $base-w={500}
+          $lg-h={700}
+          $lg-w={700}
+        >
+          <Gradient />
+        </Box>
+        <Box
+          height="60%"
+          $base-my="$16"
+          $base-mx="$5"
+          $base-h="80%"
+          $lg-my="$24"
+          $lg-mx="$32"
+          justifyContent="space-between"
+          alignItems="center"
+        >
+          <Box
+            bg="#64748B33"
+            py="$2"
+            px="$6"
+            rounded="$full"
+            alignItems="center"
+            marginTop={20}
+            $base-flexDirection="column"
+            $sm-flexDirection="row"
+            $md-alignSelf="flex-start"
+          >
+            <Text color="$white" fontWeight="$normal">
+              Get started by editing
+            </Text>
+            <Text color="$white" fontWeight="$medium" ml="$2">
+              App.tsx
+            </Text>
+          </Box>
+          <Box justifyContent="center" alignItems="center">
+            <Logo />
+          </Box>
+          <Box $base-flexDirection="column" $md-flexDirection="row">
+            <FeatureCard
+              iconSvg={DocumentData}
+              name="Docs"
+              desc="Find in-depth information about gluestack features and API."
+            />
+            <FeatureCard
+              iconSvg={LightBulbPerson}
+              name="Learn"
+              desc="Learn about gluestack in an interactive course with quizzes!"
+            />
+            <FeatureCard
+              iconSvg={Rocket}
+              name="Deploy"
+              desc="Instantly drop your gluestack site to a shareable URL with vercel."
+            />
+          </Box>
+        </Box>
       </ScrollView>
-    </SafeAreaView>
+    </Box>
   );
-}
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
-
-export default App;
+};

@@ -12,7 +12,7 @@ const user = require("./routes/user.route.js");
 
 const app = express();
 
-const SERVER_PORT = process.env.SERVER_PORT || 8082;
+const SERVER_PORT = 8082;
 
 let corsOptions = {
     origin: "http://localhost:8082",
@@ -43,6 +43,12 @@ app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors(corsOptions));
 
+// app.use("/", (req, res) => {
+//     res.status(200).json({
+//         message: "Welcome to SchoolM",
+//         code: "SUCCESS",
+//     });
+// })
 app.use("/user", user);
 
 app.listen(SERVER_PORT, async () => {
