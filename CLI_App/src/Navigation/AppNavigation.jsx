@@ -4,7 +4,7 @@ import React from "react";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from "../Pages/Login";
-import HomePage from "../Components/HomePage";
+import HomePage from "../Pages/HomePage";
 import ForgotPassword from "../Components/ForgotPassword";
 import DrawerNavigator from "./DrawerNavigator";
 import BottomNavigator from "./BottomNavigator";

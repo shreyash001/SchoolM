@@ -3,6 +3,8 @@ import { Button, FormControl, Heading, Input, InputIcon, InputSlot, Text, VStack
 import { InputField } from "@gluestack-ui/themed";
 import ForgotPassword from "../Components/ForgotPassword";
 import { userLoginAction } from "../API/action";
+import { useDispatch } from "react-redux";
+import { setUserData } from "../Reducer/userReducer";
 
 
 const Login = ({navigation}) => {
@@ -11,6 +13,8 @@ const Login = ({navigation}) => {
     const [userId, setUserId] = useState("")
     const [cCode, setcCode] = useState("")
     const [password, setPassword] = useState("")
+
+    const dispatch = useDispatch()
 
     const handleState = () => {
         setShowPassword((showState) => {
@@ -27,7 +31,8 @@ const Login = ({navigation}) => {
             "userPassword":password
         }
         let response = await userLoginAction(data)
-        console.log(response)
+        // console.log(response)
+        dispatch(setUserData(response))
         navigation.navigate("HomePage")
     }
 
@@ -82,7 +87,7 @@ const Login = ({navigation}) => {
                             </Text>
                             <Input textAlign="center" >
                                 <InputField type={showPassword ? "text" : "password"} onChangeText={(password) => { setPassword(password) }}/>
-                                <InputSlot pr="$3" onPress={() => setShowPassword(true)}>
+                                <InputSlot pr="$3" onPress={() => handleState()}>
                                     <InputIcon
                                         as={showPassword ? EyeIcon : EyeOffIcon}
                                         color="$darkBlue500"

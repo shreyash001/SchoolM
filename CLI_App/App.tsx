@@ -9,7 +9,7 @@ import Rocket from './assets/Icons/Rocket';
 import Logo from './assets/Icons/Logo';
 import DrawerNavigator from './src/Navigation/DrawerNavigator';
 // import DrawerNavigator from './src/Navigation/DrawerNavigator';
-import HomePage from "./src/Components/HomePage";
+import HomePage from "./src/Pages/HomePage";
 import AppNavigation from './src/Navigation/AppNavigation';
 
 
