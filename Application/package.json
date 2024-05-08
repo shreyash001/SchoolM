@@ -18,6 +18,8 @@
     "@react-navigation/drawer": "^6.6.15",
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/native-stack": "^6.9.26",
+    "@reduxjs/toolkit": "^2.2.3",
+    "react-redux": "^9.1.2",
     "axios": "^1.6.8",
     "expo": "^50.0.3",
     "expo-status-bar": "~1.11.1",

@@ -16,7 +16,7 @@
 
 
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import HomePage from '../Components/HomePage';
+import HomePage from '../Pages/HomePage';
 import ForgotPassword from '../Components/ForgotPassword';
 import Login from '../Pages/Login';
 import Siblings from '../Components/Siblings';

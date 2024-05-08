@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import { Button, FormControl, Heading, Input, InputIcon, InputSlot, Text, VStack, View, EyeIcon, EyeOffIcon, ButtonText } from "@gluestack-ui/themed";
 import { InputField } from "@gluestack-ui/themed";
-import "./login.css";
 import ForgotPassword from "../Components/ForgotPassword";
 import { userLoginAction } from "../API/action";
+import { useDispatch } from "react-redux";
+import { setUserData } from "../Reducer/userReducer";
 
 
-const Login = () => {
+const Login = ({navigation}) => {
 
     const [showPassword, setShowPassword] = useState(false)
     const [userId, setUserId] = useState("")
     const [cCode, setcCode] = useState("")
     const [password, setPassword] = useState("")
+
+    const dispatch = useDispatch()
 
     const handleState = () => {
         setShowPassword((showState) => {
@@ -19,15 +22,18 @@ const Login = () => {
         });
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async() => {
         // console.log(userId, cCode, password)
+        console.log("Button Clicked")
         data = {
             "userId": userId,
             "userCCode": cCode,
             "userPassword":password
         }
-        let response = userLoginAction(data)
-        console.log(response)
+        let response = await userLoginAction(data)
+        // console.log(response)
+        dispatch(setUserData(response))
+        navigation.navigate("HomePage")
     }
 
 
@@ -58,7 +64,7 @@ const Login = () => {
                             Login
                         </Heading>
                         <VStack space="xl">
-                            <Text color="$text500" lineHeight="$xs">
+                            <Text color="$black" lineHeight="$xs">
                                 User Id
                             </Text>
                             <Input>
@@ -68,7 +74,7 @@ const Login = () => {
                         </VStack>
 
                         <VStack space="xl">
-                            <Text color="$text500" lineHeight="$xs">
+                            <Text color="$black" lineHeight="$xs">
                                 C-Code
                             </Text>
                             <Input>
@@ -76,12 +82,12 @@ const Login = () => {
                             </Input>
                         </VStack>
                         <VStack space="xl">
-                            <Text color="$text500" lineHeight="$xs">
+                            <Text color="$black" lineHeight="$xs">
                                 Password
                             </Text>
                             <Input textAlign="center" >
                                 <InputField type={showPassword ? "text" : "password"} onChangeText={(password) => { setPassword(password) }}/>
-                                <InputSlot pr="$3">
+                                <InputSlot pr="$3" onPress={() => handleState()}>
                                     <InputIcon
                                         as={showPassword ? EyeIcon : EyeOffIcon}
                                         color="$darkBlue500"

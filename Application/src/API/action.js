@@ -7,5 +7,7 @@ export const userLoginAction = async (data) => {
         "userPassword": data.userPassword
     }
     let responce = await userLoginApi(requestData)
-    return responce
+    if (responce.code === "SUCCESS") {
+        return responce.data
+    }
 }
