@@ -44,7 +44,7 @@ const HomePage = () => {
         </Input>
 
         <View>
-          <Text>Welcone {userData.SName}</Text>
+          {/* <Text>Welcone {userData.SName}</Text> */}
         </View>
 
 

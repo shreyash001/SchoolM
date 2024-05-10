@@ -6,8 +6,13 @@ export const userLoginAction = async (data) => {
         "userCCode": data.userCCode,
         "userPassword": data.userPassword
     }
-    let responce = await userLoginApi(requestData)
-    if (responce.code === "SUCCESS") {
-        return responce.data
+    try {
+        let responce = await userLoginApi(requestData)
+        if (responce.code === "SUCCESS") {
+            return responce.data
+        }
+    } catch (error) {
+        console.log("Error in api Action")
     }
+    
 }

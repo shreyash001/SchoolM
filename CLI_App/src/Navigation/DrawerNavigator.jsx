@@ -24,22 +24,18 @@ import Academic from '../Components/Academic';
 import Contact from '../Components/Contact';
 import Fingerprint from '../Components/Fingerprint';
 import Settings from '../Components/Settings';
+import { NavigationContainer } from '@react-navigation/native';
+import BottomNavigator from './BottomNavigator';
 
 const Drawer = createDrawerNavigator();
 
 function DrawerNavigator() {
   return (
-    <Drawer.Navigator screenOptions={{headerShown:true}}>
-      <Drawer.Screen name="Home" component={HomePage} />
-      <Drawer.Screen name="Siblings" component={Siblings} />
-      <Drawer.Screen name="Academic" component={Academic} />
-      <Drawer.Screen name="Contact" component={Contact} />
-      <Drawer.Screen name="ForgotPasssword" component={ForgotPassword} />
-      <Drawer.Screen name="FingurePrint" component={Fingerprint} />
-      <Drawer.Screen name="Login" component={Login} />
-      <Drawer.Screen name="Setting" component={Settings} />
-   
+    <Drawer.Navigator initialRouteName="HomePage">
+      <Drawer.Screen name="HomePage" component={HomePage} />
+      <Drawer.Screen name="BottomNavigator" component={BottomNavigator} />
     </Drawer.Navigator>
+
   );
 }
 export default DrawerNavigator;
