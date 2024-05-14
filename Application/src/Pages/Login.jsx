@@ -33,7 +33,7 @@ const Login = ({navigation}) => {
         let response = await userLoginAction(data)
         // console.log(response)
         dispatch(setUserData(response))
-        navigation.navigate("HomePage")
+        navigation.navigate("BottomNavigation")
     }
 
 

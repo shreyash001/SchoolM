@@ -25,8 +25,7 @@ import Activity from "../imgs/activity.png"
 import Homework from "../imgs/homework.png"
 import Report from "../imgs/report.png"
 import { useSelector } from "react-redux";
-import DrawerNavigator from "../Navigation/DrawerNavigator";
-const HomePage = () => {
+const HomePage = ({navigation}) => {
 
   const userData = useSelector(state => { return state.user[0] })
 
@@ -36,23 +35,19 @@ const HomePage = () => {
       <View style={{ marginTop: 30 }}>
 
         {/* -------------------------------Search------------------------------ */}
+
+        <Input style={{ alignItems: "center" }}>
+          <InputSlot pl="$3" >
+            <InputIcon as={SearchIcon} />
+
+
+          </InputSlot>
+          <InputField placeholder="Search..." />
+        </Input>
+
         <View>
-          <DrawerNavigator/>
-          <Input style={{ alignItems: "center" }}>
-            <InputSlot pl="$3" >
-              <InputIcon as={SearchIcon} />
-            </InputSlot>
-            <InputField placeholder="Search..." />
-          </Input>
+          {/* <Text>Welcome {userData.SName}</Text> */}
         </View>
-
-
-        <View>
-          <Text>Welcone {userData.SName}</Text>
-        </View>
-
-
-
 
         {/* --------------------------------Row1--------------------------------- */}
 
@@ -74,7 +69,7 @@ const HomePage = () => {
 
 
           <View>
-            <Button variant="solid" mt="$2" bgColor="transparent">
+            <Button variant="solid" mt="$2" bgColor="transparent" onPress={() => navigation.navigate("help")}>
               <Image source={Help} alt="help" />
             </Button>
             <Text mt="$5" ml="$8">Help</Text>
@@ -127,7 +122,7 @@ const HomePage = () => {
           </View>
 
           <View>
-            <Button variant="solid" mt="$2" bgColor="transparent">
+            <Button variant="solid" mt="$2" bgColor="transparent" onPress={() => navigation.navigate("Profile")}>
               <Image source={Profile} alt="profile" />
             </Button>
             <Text mt="$5" ml="$6">My Profile</Text>
