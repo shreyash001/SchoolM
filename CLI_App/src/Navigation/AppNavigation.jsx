@@ -11,6 +11,10 @@ import HomePage from "../Pages/HomePage";
 import ForgotPassword from "../Components/ForgotPassword";
 import DrawerNavigator from "./DrawerNavigator";
 import BottomNavigator from "./BottomNavigator";
+import ProfilePage from "../Pages/ProfilePage";
+import Faq from "../Pages/Faq";
+
+
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -24,6 +28,8 @@ const AppNavigation = () => {
             <Stack.Navigator screenOptions={{ headerShown: false }}>
                 <Stack.Screen name="LoginPage" component={Login} />
                 <Stack.Screen name="BottomNavigation" component={DrawerNavigator} />
+                <Stack.Screen name="help" component={Faq} />
+                <Stack.Screen name="Profile" component={ProfilePage} />
 
             </Stack.Navigator>
         </NavigationContainer>
