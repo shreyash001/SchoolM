@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Alert } from 'react-native';
 
-const API = axios.create({ baseURL: 'http://192.168.1.48:8082/' });
+const API = axios.create({ baseURL: 'http://10.0.0.59:8082/' });
 
 export const userLoginApi = async (data) => {
     try {
