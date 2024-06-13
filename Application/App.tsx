@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import { config } from '@gluestack-ui/config';
 import { Box, GluestackUIProvider, Text } from '@gluestack-ui/themed';
 import { ScrollView } from 'react-native';
@@ -7,14 +8,26 @@ import LightBulbPerson from './assets/Icons/LightbulbPerson';
 import Rocket from './assets/Icons/Rocket';
 import Logo from './assets/Icons/Logo';
 import Login from './src/Pages/Login';
+import DrawerNavigator from './src/Navigation/DrawerNavigator';
+// import DrawerNavigator from './src/Navigation/DrawerNavigator';
+import AppNavigation from './src/Navigation/AppNavigation';
+import store from './src/Reducer/store';
+import { Provider } from 'react-redux';
+
 
 export default function App() {
   return (
-    <GluestackUIProvider config={config}>
-    <Login/>
-    </GluestackUIProvider>
+    <Provider store={store} >
+      <GluestackUIProvider config={config}>
+        {/* <Login/> */}
+        {/* <DrawerNavigator/> */}
+        {/* <HomePage/> */}
+        <AppNavigation />
+      </GluestackUIProvider>
+    </Provider>
   );
 }
+
 
 const Home = () => {
   return <Container />;
@@ -71,8 +84,7 @@ const Container = () => {
           $lg-my="$24"
           $lg-mx="$32"
           justifyContent="space-between"
-          alignItems="center"
-        >
+          alignItems="center" >
           <Box
             bg="#64748B33"
             py="$2"
@@ -82,8 +94,7 @@ const Container = () => {
             marginTop={20}
             $base-flexDirection="column"
             $sm-flexDirection="row"
-            $md-alignSelf="flex-start"
-          >
+            $md-alignSelf="flex-start"  >
             <Text color="$white" fontWeight="$normal">
               Get started by editing
             </Text>
@@ -98,8 +109,7 @@ const Container = () => {
             <FeatureCard
               iconSvg={DocumentData}
               name="Docs"
-              desc="Find in-depth information about gluestack features and API."
-            />
+              desc="Find in-depth information about gluestack features and API." />
             <FeatureCard
               iconSvg={LightBulbPerson}
               name="Learn"
